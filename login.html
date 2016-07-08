@@ -1,0 +1,159 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Project AGAP</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/material-design-iconic-font.min.css" />
+		
+		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+		<link rel="stylesheet" href="vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="vendor/wow/animate.css" />
+		<link rel="stylesheet" href="css/nativedroid2.css" />
+		<link rel="stylesheet" href="css/pagasa.css" />
+
+		<style>/* Prevent FOUC */body { opacity: 0; }</style>
+		<style type="text/css">
+			
+			#showDaily,#showDailyHome {margin-left:12%;}
+			.forecast {margin-left:12%;padding-top:5%;}
+			.wIcon{margin-left: -24px;}</style>
+
+</head>
+<body  onLoad="animatelogo()">
+	<div data-role="page" id="loginpage" data-theme="a" >
+			<div data-role="header" data-position="fixed" class="wow fadeIn">
+			
+					<h1 style="margin: 0 20px;" class="wow fadeIn" data-wow-delay='0.4s'>PAGASA</h1>
+			</div>
+			<div role="main" class="ui-content">
+
+			<center><h3></h3></center>
+			<script type="text/javascript" src="js/jquery.validate.js"></script>
+			
+			<form id="loginform" action="javascript:verifyfirst()">
+				<div id="loginemailicon">
+				<input type="text" name="txtLusername" id="txtLusername" placeholder="Email">
+			
+				</div>
+					<small id="errortxtLusername" style="color:#ff0000;display:block"></small>
+				
+				<div id="loginpasswordicon">
+				<input type="password" name="txtLpass" id="txtLpass" placeholder="Password">
+			
+				</div>
+					<small id="errortxtLpass" style="color:#ff0000;display:block"></small>
+				<input type="submit" value="Log In" id="btnlogin" >
+			</form>
+		
+		<!--		<img id="imgLoader" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">-->
+			</div>
+			<div data-role="popup" id="popupAfter" data-theme="d"  style="width:300px">
+			
+			<p id="popuptext"></p>
+			</div>
+		
+	</div>
+
+	
+	
+		<script src="cordova.js"></script>
+		
+<script src="js/jquery.min.js"></script> 
+  <script src="js/jquery.mobile-1.4.5.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+	
+	<script src="cordova.js"></script>
+		
+		<!--<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>-->
+		<script src="vendor/waves/waves.min.js"></script>
+		<script src="vendor/wow/wow.min.js"></script>
+		<script src="js/nativedroid2.js"></script>
+		<script src="nd2settings.js"></script>
+		<script src="js/tweecool.min.js"></script>
+		<script src="js/jquery.rss.js"></script>
+		<script src="js/moment.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+   
+	<script>
+			var lform = $("#loginform");
+			
+			lform.validate({
+					errorPlacement: function ($error, $element) {
+						var name = $element.attr("name");
+						$("#error" + name).html($error);
+					},
+					rules: {
+						txtLusername: {
+							required: true,
+							minlength: 1
+						},
+						txtLpass: {
+							required: true,
+							minlength: 1
+						},
+					},
+					messages: {
+						txtLusername: {
+							required: "Please enter your Email"
+						},
+						txtLpass: {
+							required: "Please provide a Password"
+						},
+					
+					}
+			});
+			
+			
+			function verifyfirst(){
+			if($( "#txtLusername" ).val() == "" || $( "#txtLpass" ).val() == "")
+			{
+			return;
+			}
+	
+
+			
+					
+			//	$.getJSON("http://iligtas.ph/agap/mobile/login.php?callback=?", lform.serialize(),function(data)
+			$.getJSON("http://m.weather.gov.ph/agaptest/login.php?callback=?", lform.serialize(),function(data)
+				{
+					if (data.verified == "v1")
+					{
+					localStorage.setItem("datausername", data.myName);
+					localStorage.setItem("dataemail", data.email);
+					localStorage.setItem("datapassword", data.password);
+		
+		
+		
+			$.mobile.changePage( "main2.html#homepage", { changeHash: false });
+			//window.location = "main2.html#homepage";
+					}
+					else
+					{
+					$("#popuptext").html("<b>The account you've entered is not associated with PAGASA. Please check your username or password.</b>");	
+					$( "#popupAfter" ).popup();
+					$( "#popupAfter" ).popup( "open", { 
+					positionTo: "window",
+					transition: "pop" });
+					$.mobile.loading("hide");
+					}
+				}).fail(function(data){
+				
+					$("#popuptext").html("<b>There is a problem with your login, please try again later.</b>");
+						$( "#popupAfter" ).popup();
+						$( "#popupAfter" ).popup( "open", { 
+						positionTo: "window",
+						transition: "pop"});
+						$.mobile.loading("hide");
+					
+				});
+						
+			}
+		</script>
+		
+
+	</body>
+</html>

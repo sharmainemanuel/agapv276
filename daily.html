@@ -1,0 +1,153 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Project AGAP</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+		<link rel="stylesheet" href="vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="vendor/wow/animate.css" />
+		<link rel="stylesheet" href="css/nativedroid2.css" />
+		<link rel="stylesheet" href="css/pagasa.css" />
+		<style>/* Prevent FOUC */body { opacity: 0; }</style>
+		<style type="text/css">
+			
+			#showDaily,#showDailyHome {margin-left:12%;}
+			.forecast {margin-left:12%;padding-top:5%;}
+			.wIcon{margin-left: -24px;}</style>
+
+	</head>
+	<body >
+
+		<div data-role="page" id="currentLocation">
+			<!-- panel left -->
+					<div data-role="panel" id="leftpanel2" data-display="overlay" data-position-fixed="true" >
+
+				<div class='nd2-sidepanel-profile wow fadeInDown'>
+					<img class='profile-background' src="bg.jpg" />
+					<div class="row">
+						<div class='col-xs-4 center-xs'>
+							<div class='box'>
+								<img class="profile-thumbnail" src="icon.png" />
+							</div>
+						</div>
+						<div class='col-xs-8'>
+							<div class='box profile-text'>
+								<strong>PAGASA</strong>
+									<span class='subline'>Tracking the sky</span>
+									<span class='subline'>Helping the country</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<ul data-role="listview" data-inset="false">
+				</ul>
+				<div data-role="collapsible" data-inset="false"  data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>General Weather</h3>
+					<ul data-role="listview" data-inset="false" data-icon="false">
+						<li><a href="main2.html" data-ajax='false' data-icon="false">Advisories</a></li>
+						<li><a href="daily.html#currentLocation" data-ajax='false' data-icon="false">Daily</a></li>
+						<li><a href="main.html#keycities" data-ajax='false' data-icon="false">Key Cities</a></li>
+						<li><a href="tourist.html#tourist" data-ajax='false' data-icon="false">Tourist</a></li>
+						<li><a href="main.html#local" class="ui-disabled"  data-ajax='false'>Local Cities</a></li>
+						<li><a href="main.html#asian" data-ajax='false'>Asian Cities</a></li>
+						<li><a href="main.html#weekly" class="ui-disabled"  data-ajax='false'>Weekly Outlook</a></li>
+						
+					</ul>
+				</div>
+				
+				<ul data-role="listview" data-inset="false">
+				
+				</ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Flood Information</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="main.html" class="ui-disabled" data-ajax='false'>Advisories</a></li>
+						<li><a href="main.html" class="ui-disabled" data-ajax='false'>Bulletin</a></li>
+						<li><a href="main.html" class="ui-disabled" data-ajax='false'>Dam Status</a></li>
+						
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false">
+			
+				</ul>
+
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Radar and Satellite</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="main.html#satellite" data-ajax='false'>Satellite</a></li>
+						<li><a href="main.html#radar"  data-ajax='false'>Radar</a></li>
+			
+					</ul>
+				</div>
+				<ul data-role="listview" data-inset="false">
+					
+				</ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Social</h3>
+					<ul data-role="listview" data-icon="false">
+						<li><a href="main.html#twitter" data-ajax='false'>Twitter</a></li>						
+					</ul>
+				</div>
+			
+
+				<hr class="inset">
+				<ul data-role="listview" data-inset="false">
+					<li data-role="list-divider">Information</li>
+				</ul>
+				<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d" data-expanded-icon="carat-d" data-iconpos="right">
+					<h3>Nice to Know</h3>
+				
+				</div>
+			</div>
+			<!-- /panel left -->
+			
+			<div data-role="header" data-position="fixed" class="wow fadeIn">
+					<a href="#leftpanel2" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
+					<h1 class="wow fadeIn" data-wow-delay='0.4s'>Daily Forecast</h1>
+			</div>
+
+
+			<div role="main" class="ui-content" data-inset="false">
+				<img id="imgLoader2" src="img/ballRing.gif" style="width:10%;opacity:0.5;margin-left:auto;margin-right:auto;display:block; position: relative;">
+				<div id="demo2"> </div>	
+				
+			<center><div class="nd2-card nd2-card card-media-right card-media-small clr-bg-cyan" id="clockboxDaily" ></div></center>				
+				<div class="nd2-card card-media-right card-media-small clr-bg-cyan">
+
+						
+					<div data-wow-delay='0.4s' id="show"></div>
+					
+					<div  data-wow-delay='0.4s' id="showDaily" class="row"></div>
+							
+			</div>
+
+		</div> 
+		</div> 
+		
+
+		<script src="cordova.js"></script>
+		<script src="telephonenumber.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>
+		<script src="vendor/waves/waves.min.js"></script>
+		<script src="vendor/wow/wow.min.js"></script>
+		<script src="js/nativedroid2.js"></script>
+		<script src="nd2settings.js"></script>
+		<script src="js/tweecool.min.js"></script>
+		<script src="js/jquery.rss.js"></script>
+		<script src="js/moment.min.js"></script>
+		
+		<script src="js/date.js"></script>
+		<script src="js/daily.js"></script>
+
+
+
+
+
+	</body>
+</html>
