@@ -44,7 +44,7 @@
 		value="cli-6.1.0"
         <preference name="phonegap-version"       value="3.5.0" />
     -->
-	<preference name="phonegap-version" value="cli-5.4.1" />
+	<preference name="phonegap-version" value="cli-6.5.0" />
 
 	<preference name="android-build-tool" value="gradle" />
 
