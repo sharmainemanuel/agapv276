@@ -51,6 +51,7 @@
     <!-- Plugins -->
 
     <!-- Core plugins -->
+	<gap:plugin name="cordova-plugin-camera" source="npm" version="2.2.0" />
     
  
 
